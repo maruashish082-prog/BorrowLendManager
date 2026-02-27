@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="primary">#5C6BC0</color>
+    <color name="primary_dark">#3949AB</color>
+
+    <!-- Semantic -->
+    <color name="borrow_color">#EF5350</color>
+    <color name="borrow_bg">#FFEBEE</color>
+    <color name="lend_color">#26A69A</color>
+    <color name="lend_bg">#E0F2F1</color>
+
+    <!-- Dark Theme Backgrounds -->
+    <color name="bg_dark">#111318</color>
+    <color name="surface_card">#1C1F2A</color>
+    <color name="surface_elevated">#252836</color>
+
+    <!-- Text -->
+    <color name="text_primary">#F0F0F5</color>
+    <color name="text_secondary">#B0B3C0</color>
+    <color name="text_hint">#6B6F80</color>
+    <color name="text_disabled">#44475A</color>
+
+    <!-- Misc -->
+    <color name="white">#FFFFFF</color>
+    <color name="divider">#252836</color>
+</resources>

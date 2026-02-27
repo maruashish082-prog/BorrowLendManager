@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.borrowlend.manager'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.borrowlend.manager"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // ── Signing config (used by GitHub Actions via env vars) ──
+    signingConfigs {
+        release {
+            storeFile     = System.getenv("KEYSTORE_FILE") ?
+                            file(System.getenv("KEYSTORE_FILE")) : null
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+            keyAlias      = System.getenv("KEY_ALIAS")         ?: ""
+            keyPassword   = System.getenv("KEY_PASSWORD")      ?: ""
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix   "-debug"
+            debuggable true
+        }
+        release {
+            minifyEnabled   true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (System.getenv("KEYSTORE_FILE")) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+}
+
+// Helper: lets workflow read versionName
+tasks.register('printVersionName') {
+    doLast { println android.defaultConfig.versionName }
+}

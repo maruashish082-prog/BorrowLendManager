@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/surface_card"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="12dp"
+        android:gravity="center_vertical"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/text_primary"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:text="New Transaction"
+            android:textSize="19sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TYPE SELECTOR -->
+            <TextView
+                android:text="TRANSACTION TYPE"
+                android:textSize="10sp"
+                android:textColor="@color/text_hint"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/rgType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_type_toggle"
+                android:padding="4dp">
+
+                <RadioButton
+                    android:id="@+id/rbBorrow"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="↓  I Borrowed"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:checked="true"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/selector_type_borrow"
+                    android:textColor="@drawable/selector_type_text_borrow" />
+
+                <RadioButton
+                    android:id="@+id/rbLend"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="↑  I Lent"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/selector_type_lend"
+                    android:textColor="@drawable/selector_type_text_lend" />
+            </RadioGroup>
+
+            <View android:layout_width="match_parent" android:layout_height="20dp" />
+
+            <!-- NAME -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Person's Name *"
+                style="@style/InputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapWords"
+                    android:imeOptions="actionNext" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="12dp" />
+
+            <!-- AMOUNT -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount *"
+                app:prefixText="₹"
+                style="@style/InputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="12dp" />
+
+            <!-- DATE -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date *"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calendar"
+                style="@style/InputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:clickable="true"
+                    android:cursorVisible="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="12dp" />
+
+            <!-- REMARKS -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Remarks (Optional)"
+                style="@style/InputLayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRemarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:minLines="2"
+                    android:maxLines="4"
+                    android:gravity="top" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="24dp" />
+
+            <!-- SAVE BUTTON -->
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Add Transaction"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-bold"
+                android:backgroundTint="@color/primary"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
