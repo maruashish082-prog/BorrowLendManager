@@ -51,8 +51,20 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
+      # Check if keystore secret exists — result used in next step
+      - name: 🔍 Check keystore secret
+        id: keystore_check
+        run: |
+          if [[ -n "$KEYSTORE" ]]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE_BASE64 }}
+
       - name: 🔐 Sign Release APK
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: steps.keystore_check.outputs.exists == 'true'
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: app/build/outputs/apk/release
@@ -105,8 +117,20 @@ jobs:
       - name: 🚀 Build Release APK
         run: ./gradlew assembleRelease
 
+      # Check if keystore secret exists — result used in next step
+      - name: 🔍 Check keystore secret
+        id: keystore_check
+        run: |
+          if [[ -n "$KEYSTORE" ]]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          KEYSTORE: ${{ secrets.KEYSTORE_BASE64 }}
+
       - name: 🔐 Sign Release APK
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: steps.keystore_check.outputs.exists == 'true'
         uses: r0adkll/sign-android-release@v1
         id: sign
         with:
